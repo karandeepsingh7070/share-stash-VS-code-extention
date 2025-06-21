@@ -14,10 +14,16 @@
   ],
   "main": "./extension.js",
   "contributes": {
-    "commands": [{
-      "command": "share-stash.shareStash",
-      "title": "Share Stash"
-    }]
+    "commands": [
+      {
+        "command": "share-stash.shareStash",
+        "title": "Share Stash"
+      },
+      {
+        "command": "share-stash.receiveStash",
+        "title": "StashShare: Receive Stash"
+      }
+    ]
   },
   "scripts": {
     "lint": "eslint .",

@@ -1,4 +1,8 @@
 // The module 'vscode' contains the VS Code extensibility API
+
+const { startStashServer } = require('./server');
+const { receiveStash } = require('./client');
+
 // Import the module and reference it with the alias vscode in your code below
 const vscode = require('vscode');
 const { execSync } = require('child_process');
@@ -17,7 +21,7 @@ function getGitStashes() {
  * @param {vscode.ExtensionContext} context
  */
 function activate(context) {
-	const disposable = vscode.commands.registerCommand('share-stash.shareStash', async function () {
+	const share = vscode.commands.registerCommand('share-stash.shareStash', async function () {
 		const stashes = getGitStashes();
 		console.log('Available stashes:', stashes);
 		if (stashes.length === 0) {
@@ -38,6 +42,15 @@ function activate(context) {
 				const patch = execSync(`git stash show -p ${stashRef}`, { cwd: vscode.workspace.rootPath });
 				await vscode.workspace.fs.writeFile(patchFile, patch);
 				vscode.window.showInformationMessage(`Patch created: ${patchFile.fsPath}`);
+
+				const stopServer = startStashServer(patchFile.fsPath);
+    			vscode.window.showInformationMessage('Stash server started. Waiting for receiver...');
+    			setTimeout(() => {
+      			stopServer();
+      			vscode.window.showInformationMessage('stash server timeout - closed.');
+    			}, 120000); // Auto close after 60s
+
+
 				// TODO: send this patch to another machine
 			} catch (err) {
 				vscode.window.showErrorMessage('Failed to create patch');
@@ -47,7 +60,12 @@ function activate(context) {
 		vscode.window.showInformationMessage('Hello World from share stash updated!');
 	});
 
-	context.subscriptions.push(disposable);
+	const recieve = vscode.commands.registerCommand('share-stash.receiveStash', async () => {
+    await receiveStash(context);
+});
+
+	context.subscriptions.push(share);
+	context.subscriptions.push(recieve);
 }
 
 // This method is called when your extension is deactivated
