@@ -57,7 +57,7 @@ function activate(context) {
 			}
 		}
 		console.log('Selected stash:', selected);
-		vscode.window.showInformationMessage('Hello World from share stash updated!');
+		// vscode.window.showInformationMessage('Hello World from share stash updated!');
 	});
 
 	const recieve = vscode.commands.registerCommand('share-stash.receiveStash', async () => {

@@ -1,9 +1,9 @@
 {
   "name": "share-stash",
-  "displayName": "share stash",
+  "displayName": "Share Stash",
   "icon": "icon.png",
   "description": "",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "engines": {
     "vscode": "^1.101.0"
   },
