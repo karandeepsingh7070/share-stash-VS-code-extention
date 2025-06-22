@@ -17,7 +17,7 @@
     "commands": [
       {
         "command": "share-stash.shareStash",
-        "title": "Share Stash"
+        "title": "StashShare: Share Stash"
       },
       {
         "command": "share-stash.receiveStash",
