@@ -1,65 +1,79 @@
-# share-stash README
 
-This is the README for your extension "share-stash". After writing up a brief description, we recommend including the following sections.
+# 🔄 StashShare - Share Git Stashes Instantly Between Machines
 
-## Features
-
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
-
-For example if there is an image subfolder under your extension project workspace:
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
-
-## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
+**StashShare** is a simple VS Code extension that lets developers **send and receive Git stashes over the local network**. Whether you're pairing with a teammate or working across machines, quickly move your stashed changes without using branches, commits, or patches manually.
 
 ---
 
-## Working with Markdown
+## 🚀 Features
 
-You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
+- 📤 Share a selected stash from your Git repo over LAN
+- 📥 Receive a stash and save it safely to your own Git stash list
+- 🕓 Auto shutdown of stash server after 60 seconds to prevent lingering sockets
 
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets
+---
 
-## For more information
+## 💡 Use Case
 
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
+You're working on one machine and have some changes stashed. You want to continue on another machine — just share the stash with **StashShare**, and it will appear in the new machine’s stash list. No git remotes, no GitHub — just fast, local sharing.
 
-**Enjoy!**
+---
+
+## 🧩 How to Use
+
+### 🧑‍💻 1. Install the Extension
+
+You can build and install manually:
+
+```bash
+npm install -g vsce
+vsce package
+code --install-extension stash-share-0.0.1.vsix
+```
+
+Or install from the Marketplace.
+
+---
+
+### 💾 2. Share a Stash (Sender)
+
+1. Open your Git project in VS Code
+2. Open Command Palette: `Ctrl+Shift+P` / `Cmd+Shift+P`
+3. Run: **“StashShare: Share Stash”**
+4. Select the stash you want to share
+5. You'll get a message like:
+
+   > “Stash server started on 192.168.1.10:4949”
+
+📌 Keep this machine running while the other receives.
+
+---
+
+### 📲 3. Receive a Stash (Receiver)
+
+1. Open your own Git project in VS Code
+2. Open Command Palette
+3. Run: **“StashShare: Receive Stash”**
+4. Enter the **IP address of the sender machine**
+
+   > Example: `192.168.1.10`
+5. The stash will be received, saved to your own `git stash`.
+
+---
+
+## 🌐 Requirements
+
+* Both machines must be on the **same Wi-Fi or LAN**
+* Git must be installed and initialized in the workspace
+* Ports must not be blocked (uses `4949`)
+
+---
+
+## 🤝 Contributing
+
+Want to improve it? Open issues, PRs, or new ideas welcome!
+
+## 📜 License
+
+MIT © Karandeep Singh
+
