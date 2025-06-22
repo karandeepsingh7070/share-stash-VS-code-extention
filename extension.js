@@ -23,7 +23,7 @@ function getGitStashes() {
 function activate(context) {
 	const share = vscode.commands.registerCommand('share-stash.shareStash', async function () {
 		const stashes = getGitStashes();
-		console.log('Available stashes:', stashes);
+		// console.log('Available stashes:', stashes);
 		if (stashes.length === 0) {
 			vscode.window.showInformationMessage('No stashes available to share.');
 			return;
