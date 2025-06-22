@@ -1,6 +1,7 @@
 {
   "name": "share-stash",
   "displayName": "share stash",
+  "icon": "icon.png",
   "description": "",
   "version": "0.0.1",
   "engines": {
