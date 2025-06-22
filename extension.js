@@ -48,7 +48,7 @@ function activate(context) {
     			setTimeout(() => {
       			stopServer();
       			vscode.window.showInformationMessage('stash server timeout - closed.');
-    			}, 120000); // Auto close after 60s
+    			}, 60000); // Auto close after 60s
 
 
 				// TODO: send this patch to another machine
