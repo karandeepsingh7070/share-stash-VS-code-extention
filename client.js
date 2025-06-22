@@ -46,7 +46,7 @@ async function receiveStash(context) {
   try {
     execSync(`git apply "${patchPath}"`, { cwd });
     execSync(`git stash push -m "Received from StashShare"`, { cwd });
-    execSync(`git reset --hard`, { cwd });
+    // execSync(`git reset --hard`, { cwd });
 
     vscode.window.showInformationMessage(`Stash saved successfully.`);
   } catch (err) {
